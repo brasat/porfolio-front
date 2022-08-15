@@ -4,18 +4,24 @@
     src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 }
 
-.mat-card{
+ .card{
     border-radius:32px;
     margin:10px 10px;
     padding:0px;
     border-color:#0a66c2;
-}
+} 
 
 h1{
     font-size:x-large;
 }
 h2{
     font-size:medium;
+}
+.card-content{
+    float:right;
+}
+svg{
+    float:right;
 }
 
 *{
