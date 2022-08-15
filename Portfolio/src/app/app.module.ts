@@ -13,6 +13,14 @@ import { LoginComponent } from './component/login/login.component';
 import { LogrosComponent } from './component/logros/logros.component';
 import { PortfolioComponent } from './component/portfolio/portfolio.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule,Routes } from '@angular/router';
+
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+
+import {InterceptorService} from './service/interceptor.service';
+import {GuardGuard} from './service/guard.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +36,14 @@ import { PortfolioComponent } from './component/portfolio/portfolio.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
