@@ -1,0 +1,27 @@
+{
+	"name":"Manuel Sadosky",
+	"backImage":"",
+	"image":"",
+	"position":"informático",
+	"company":{
+		"name":"CONICET",
+		"img":"",
+		"url":"#"
+},
+"school":{
+		"name":"Universidad de Buenos Aires",
+		"img":"",
+		"url":"#"
+
+},
+"ubication": "Buenos Aires (Argentina)",
+"about":"Matematico físico e informatico",
+
+"archivemnents":[{
+	"name":"Huaro App"},
+	{
+	"name":"Lanterns 19/09"
+	}
+]
+
+}
