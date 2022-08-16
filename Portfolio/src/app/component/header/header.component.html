@@ -1,33 +1,31 @@
-<div class="card mb-3" style="padding:16px">
-  <div class="row g-5">
-    <div class="col-md-4">
-      <div id="profile-background"><img src=""></div>
+<div class="card mb-3">
+  <div class="profile-background"><img [src]="myPortfolio.backImage"></div>
+  <div style="padding:16px">
+      <div class="card-content" style="padding:16px">
+        <div class="card-text">
+          <h5>{{myPortfolio.company.name}}</h5>
+          <h5>{{myPortfolio.school.name}}</h5>
+        </div>
+      </div>
+    <div class="row g-5">
+      <div class="col-md-4">
       <div id="info-img">
-        <img class="profile-image"src="">
+        <img class="profile-image"[src]="myPortfolio.image">
       </div>
       <div class="mat-card">
         <h1>{{myPortfolio.name}}</h1>
       </div>
       <div id="info-data">
-        <div id="info-company">{{myPortfolio.position}}</div>
-        <span>Buenos Aires(Argentina)</span>
-        <span><a href="#"> {{myPortfolio.ubicacion}} </a></span>
-      </div>
-      
-      
-    </div>
-    <div class="col-md-8">
-      <div class="card-content">
-        <div class="card-text">
-          <h5>CONICET</h5>
-          <h5>Universidad de Buenos Aires</h5>
-        </div>
+        <div style="font-weight: bold">{{myPortfolio.position}}</div>
+        <span>{{myPortfolio.ubication}}</span><a href="">información de contacto</a>
       </div>
     </div>
   </div>
-  <div class="card-actions">
-    <button type="button" class="btn btn-primary">Tengo interés en</button>
-    <button type="button" class="btn btn-light">Añadir sección</button>
-    <button type="button" class="btn btn-light">Más</button>
+    <div class="card-actions">
+      <button type="button" class="btn btn-primary">Tengo interés en</button>
+        <button type="button" class="btn btn-light">Añadir sección</button>
+        <button type="button" class="btn btn-light">Más</button>
+      </div>
   </div>
+</div>
   

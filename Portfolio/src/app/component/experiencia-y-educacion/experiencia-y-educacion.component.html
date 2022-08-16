@@ -10,23 +10,26 @@
             <div class="card-title">
                 <h1>Expericencia</h1>
             </div>
-                <div id="info-img"></div>
+            <li *ngFor="let experience of experienceList">
+                <img [src]="experience.img" alt="" class="logo-imagen">
 
                 <div id="info-data">
                     <div>
                         <div class="card-subtitle">
-                            <h1>Backend Developer</h1>
+                            <h2>{{experience.position}}</h2>
                         </div>
-                        <h2>Pixar - jornada parcial</h2>
+                        <p style="font-weight: bolder">{{experience.company}} - {{experience.mode}}</p>
                         <div class="card-text">
-                            <p class="text-muted">mar 2019 - actualidad - 2 años y 6 meses <br> Buenos Aires(Argentina)</p>
+                            <p class="text-muted">{{experience.start}} - {{experience.end}} - {{experience.time}} <br> {{experience.ubicacion}}</p>
                         </div>
                     </div>
                 </div>
+            </li>
          </div>
     </div>
 <div>
     
+
     <div class="card mat-card"id="third card">
         <div id="info"style="padding:16px">
                 <div class="card-actions">
@@ -38,25 +41,20 @@
             <div class="card-title">
                 <h1>Educacion</h1>
             </div>
-                    <div id="info-img">
-                </div>
+
+                <li *ngFor="let educacion of educacionList">
+                    <img [src]="educacion.img" alt="" class="logo-imagen">
                     <div id="info-data">
                         <div>
                             <div class="card-subtitle">
-                                <h2>UTN</h2>
+                                <h2>{{educacion.school}}</h2>
                             </div>
-                                <div>Ingenieria,Sistemas de computacion,0</div>
-                                <p class="text-muted"> 2019 - 2023</p> 
-                            </div>
-                        </div>
-                    <div>
-                        <div class="card-subtitle">
-                            <h2>Escuela Secundaria Tecnica 14</h2>
-                        </div>
-                        <div>Tecnico,Electronica y sistemas de control.0</div>
-                        <p class="text-muted"> 2012 - 2014 </p>
-                        </div>
+                                <div style="font-weight: bolder">{{educacion.career}}</div>
+                                <p class="text-muted"> <time>{{educacion.start}}</time>  - <time>{{educacion.end}}</time></p> 
+                         </div>
                     </div>
-            </div>
-        </div>
+                </li>
+
+             </div>
+         </div>
     

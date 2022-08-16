@@ -1,5 +1,4 @@
 <div>
-    
     <div class="card mat-card"id="second card">
         <div id="info"style="padding:16px">
             <div class="card-actions">
@@ -11,11 +10,12 @@
             <div class="card-title">
                 <h1>Logros</h1>
             </div>
-                <div id="info-img"></div>
+            <h2>{{logrosList.length}} Proyectos</h2>
+            <div *ngFor="let logro of logrosList">
                 <div class="card-text">
-                    <h2>2 Proyectos</h2>
-                    <div>ML App</div>
-                    </div>
+                    <li>{{logro.name}}</li>
                 </div>
             </div>
-         </div>
+        </div>     
+    </div>
+</div>

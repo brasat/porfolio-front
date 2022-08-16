@@ -1,8 +1,8 @@
 {
 	"name":"Manuel Sadosky",
-	"backImage":"",
-	"image":"",
-	"position":"informático",
+	"backImage":"https://cdn.pixabay.com/photo/2015/01/08/18/25/desk-593327_960_720.jpg",
+	"image":"https://cdn.pixabay.com/photo/2017/08/10/08/00/suit-2619784_960_720.jpg",
+	"position":"informático en CONICET",
 	"company":{
 		"name":"CONICET",
 		"img":"",
@@ -14,14 +14,66 @@
 		"url":"#"
 
 },
+"experience":[
+    {
+        "position":"Bakend Development",
+        "company":"pixar",
+        "img":"",
+        "mode":"Jornada Parcial",
+        "start":"mar 2019",
+        "end":"actualidad",
+        "time":"2 años y 6 meses",
+        "ubicacion":"Buenos Aires, Argentina"
+    }
+],
 "ubication": "Buenos Aires (Argentina)",
-"about":"Matematico físico e informatico",
-
-"archivemnents":[{
-	"name":"Huaro App"},
-	{
-	"name":"Lanterns 19/09"
-	}
+"about":"Matematico físico e informatico argentino considerado por muchos como el padre de la computación en la Argentina.",
+"education":[
+    {
+        "img":"",
+        "school":"UTN",
+        "title":"Ingenieria",
+        "career":"Sistemas Computacionales",
+        "score":0,
+        "start":"2019",
+        "end":"2023"
+    },
+    {
+        "img":"",
+        "school":"Centro de Enseñanza Técnica Industrial",
+        "title":"Tecnologo",
+        "career":"Tecnologia,Desarrollo de Software",
+        "score":82,
+        "start":"2014",
+        "end":"2018"
+    },
+    {
+        "img":"",
+        "school":"Escuela Secundaria Técnica",
+        "title":"Técnico",
+        "career":"Electronica,comunicacion y sistemas de control",
+        "score":0,
+        "start":"2012",
+        "end":"2014"
+    }
+],
+"aptitudes":[{
+    "name":"Resolucion de Problemas",
+    "progress":75,
+    "confirms":2,
+    "confirmsNames":[{
+        "name":"Nikkolai Emmanuel Bayro"
+    }]
+},
+    {
+    "name":"Diseño de Sistemas",
+    "confirms":3,
+    "confirmsNames":[{
+        "name":"Nikkolai Emmanuel Bayro"
+    }]
+}],
+"archivemnents":[
+    {"name":"Huaro App"},
+	{"name":"Lanterns 19/09"}
 ]
-
 }

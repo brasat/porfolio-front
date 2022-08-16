@@ -7,16 +7,22 @@
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
             </div>
-            <h1>Aptitudes y validacioones</h1>
+            <h1>Aptitudes y validaciones</h1>
             <div id="info-img">
                 <div class="btn-edit"><a href="#" class="btn-right"></a></div>
             </div>
+            <li *ngFor="let aptitude of aptitudesList">
+
             <div id="info-data">
                 <div>
-                    <h2>Resolucion de problenmas </h2><p class="text-muted">- 2</p>
-                    <p>Jablonski y 2 </p><p class="text-muted">contacto han validado esta aptitud</p>
+                    <span>{{aptitude.name}}</span><span class="text-muted"> - {{aptitude.confirms}}</span>
+                    <p>
+                        <span>Jablonski y 2 </span><span class="text-muted">contacto han validado esta aptitud</span>
+                    </p>
                 </div>
             </div>
+
+            </li>
         </div>
     </div>
     </div>

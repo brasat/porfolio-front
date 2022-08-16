@@ -4,8 +4,8 @@
     src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 }
 
- .card{
-    border-radius:32px;
+.card{
+    border-radius:25px;
     margin:10px 10px;
     padding:0px;
     border-color:#0a66c2;
@@ -15,7 +15,7 @@ h1{
     font-size:x-large;
 }
 h2{
-    font-size:medium;
+    font-size:larger;
 }
 .card-content{
     float:right;
