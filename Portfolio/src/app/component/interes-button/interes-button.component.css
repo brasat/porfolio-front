@@ -1,7 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
 .btn-light{
-    float: right;
-    width:12%;
-    height:12%;
     color:black;
     background-color:gainsboro;
 }

@@ -4,14 +4,14 @@
   <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" formControlName="email" 
+      <input type="email" formControlName="usernameOrEmail" 
       [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}"
       class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
       <div *ngIf="Email?.errors && Email?.touched">
         <p *ngIf="Email?.hasError('required')" class="text-danger">
           Email es requerido
         </p>  
-        <p *ngIf="Email?.hasError('email')" class="text-danger">
+        <p *ngIf="Email?.hasError('usernameOrEmail')" class="text-danger">
           El formato de email debe ser valido
         </p>
       </div>
@@ -33,5 +33,8 @@
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+    
   </form>
+  <button (click)="regist()" type="submit" class="btn btn-primary">Register now</button>
+  
 </div>

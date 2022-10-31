@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 @font-face {
     font-family: 'Poppins';
     src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
@@ -45,8 +47,6 @@ body{
 
 .btn {
     display: inline-block;
-    background: #000;
-    color: #fff;
     border: none;
     padding: 10px 20px;
     margin: 5px;
@@ -96,4 +96,19 @@ body{
 .form-control-check input {
     flex: 2;
     height: 20px;
+}
+
+.right.carousel-control.carousel-control-next {
+    background: rgb(0, 0, 0);
+    padding: 0;
+    margin: 0;
+    width: 8%;
+    height: 8%;
+}
+.left.carousel-control.carousel-control-prev {
+    background: rgb(0, 0, 0);
+    padding: 0;
+    margin: 0;
+    width: 8%;
+    height: 8%;
 }

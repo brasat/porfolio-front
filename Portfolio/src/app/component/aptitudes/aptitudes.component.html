@@ -2,27 +2,84 @@
     <div class="card mat-card"id="four card">
         <div id="info"style="padding:16px">
             <div class="card-actions">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+                (click)="edit()"
+                >
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
+                <button type="button" onclick="window.location.href='https://pskills.org/aptitude.jsp'" class="btn btn-light">Hacer un test de aptitudes</button>
+                <button type="button" class="btn btn-light"
+                (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseBasic"
+                
+                (click)="scrollToElement(exp)"
+                >Añadir una aptitud nueva</button>
             </div>
             <h1>Aptitudes y validaciones</h1>
-            <div id="info-img">
-                <div class="btn-edit"><a href="#" class="btn-right"></a></div>
-            </div>
-            <li *ngFor="let aptitude of aptitudesList">
 
-            <div id="info-data">
-                <div>
-                    <span>{{aptitude.name}}</span><span class="text-muted"> - {{aptitude.confirms}}</span>
-                    <p>
-                        <span>Jablonski y 2 </span><span class="text-muted">contacto han validado esta aptitud</span>
-                    </p>
+            <div id="collapseBasic" [collapse]="isCollapsed" #exp>
+                <div class="well well-lg card card-block card-header">
+                
+                <div style="padding:16px">
+                    
+                    <h2 for="exampleFormControlInput1" class="form-label">Añadir aptitud</h2>
+
+                    
+                    <input class="form-control" [(ngModel)]="editText" id="exampleFormControlTextarea1" rows="3" placeholder="Nombre de aptitud">
+                    <input class="form-control" [(ngModel)]="ConfirmText" id="exampleFormControlTextarea1" rows="3" placeholder="Nombre/s de contactos que confirman de aptitud">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"
+                    style="margin-right: 10px;"
+                    
+                    >
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+
+                    
+                    <button type="button" class="btn btn-light" (click)="save_new()">Save</button>
+                </div>
                 </div>
             </div>
 
+            <div id="info-img">
+                <div class="btn-edit"><a href="#" class="btn-right"></a></div>
+            </div>
+
+            <li *ngFor="let aptitude of myMap.keys()">
+                <div id="info-data">
+                    <div>
+                        <p>
+                            <span>{{aptitude}} </span>
+                        </p>
+
+                        <p>
+                            <span>{{myMap.get(aptitude)}} </span><span class="text-muted">  han validado esta aptitud</span>
+                        </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" *ngIf="editmode" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+                            (click)="editValue(aptitude)"
+                            >
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>
+        
+                            <svg xmlns="http://www.w3.org/2000/svg" *ngIf="editmode" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"
+                            (click)="deletelog(aptitude)"
+                            >
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                              </svg>
+                              
+                    </div>
+                </div>
+                
             </li>
+            <input  class="set-width" [(ngModel)]="editvalue"  *ngIf="editval" type="text" placeholder="{{editvalue}}"><br>
+            <input  class="set-width" [(ngModel)]="editvalue2"  *ngIf="editval" type="text" placeholder="{{editvalue2}}"><br>
+
+            <button *ngIf="editmode" (click)="save()" class="btn btn-primary" >save</button>
+            <button *ngIf="editmode" (click)="cancel()" class="btn btn-primary">cancel</button>
         </div>
     </div>
-    </div>
+</div>

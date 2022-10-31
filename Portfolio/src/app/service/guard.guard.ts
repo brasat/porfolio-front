@@ -15,7 +15,7 @@ export class GuardGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
       let currentUser=this.autenticacionService.UsuarioAutenticado;
-   if(currentUser && currentUser.accessToken){
+   if(currentUser && currentUser.tokenDeAcceso){
     return true;
    } 
    else{

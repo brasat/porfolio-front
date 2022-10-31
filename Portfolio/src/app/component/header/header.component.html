@@ -1,31 +1,184 @@
 <div class="card mb-3">
-  <div class="profile-background"><img [src]="myPortfolio.backImage"></div>
+  
+  <!--  -->
+   
+  
+  <div class="profile-background" *ngIf="!editmode">
+    <img [src]="myPortfolio.backImage"   >
+  </div>
+
+  <div class="mb-3" *ngIf="editmode">
+    <img [src]="urlBack" class="profile-background" > 
+    <p class="background">Ingresar direccion para imagen de portada</p>
+    <input [(ngModel)]="myPortfolio.backImage" class="background" type="text" placeholder="{{myPortfolio.backImage}}">
+  </div> 
+
+
   <div style="padding:16px">
-      <div class="card-content" style="padding:16px">
-        <div class="card-text">
-          <h5>{{myPortfolio.company.name}}</h5>
-          <h5>{{myPortfolio.school.name}}</h5>
-        </div>
-      </div>
-    <div class="row g-5">
-      <div class="col-md-4">
-      <div id="info-img">
-        <img class="profile-image"[src]="myPortfolio.image">
-      </div>
-      <div class="mat-card">
-        <h1>{{myPortfolio.name}}</h1>
-      </div>
-      <div id="info-data">
-        <div style="font-weight: bold">{{myPortfolio.position}}</div>
-        <span>{{myPortfolio.ubication}}</span><a href="">información de contacto</a>
-      </div>
+    <div class="card-content" >
+      <div class="card-actions">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+        (click)="edit()"
+        >
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+      </svg>
+      
+    </div>
+    <div class="ico-references">
+
+      <li *ngFor="let comp of companyContent">
+        
+        <img [src]="comp.img" >
+        <h5>{{comp.name}}</h5>
+        
+      </li>
+
+      
+
+
+      <li *ngFor="let scho of schoolContent">
+        
+        <img [src]="scho.img">
+        <h5>{{scho.name}}</h5>
+        
+      </li>
     </div>
   </div>
-    <div class="card-actions">
-      <button type="button" class="btn btn-primary">Tengo interés en</button>
-        <button type="button" class="btn btn-light">Añadir sección</button>
-        <button type="button" class="btn btn-light">Más</button>
+
+  <!--  -->
+  <div class="row g-5" >
+      <div id="info-img">
+        <img class="profile-image"[src]="myPortfolio.image" *ngIf="!editmode">
       </div>
-  </div>
-</div>
+
+
+      <div class="mb-3" *ngIf="editmode">
+        <img [src]="url" class="profile-image" > 
+        <h5>Ingresar direccion para imagen de perfil</h5>
+        <input [(ngModel)]="myPortfolio.image" type="text" placeholder="{{myPortfolio.image}}">
+      </div> 
+
   
+
+      
+      
+  <div>
+  <input class="set-width" [(ngModel)]="editName"  *ngIf="editmode" type="text" placeholder="{{myPortfolio.nombre}}" >
+  <input class="set-width" [(ngModel)]="editApellido"  *ngIf="editmode" type="text" placeholder="{{myPortfolio.apellido}}" >
+      <div class="mat-card" *ngIf="!editmode">
+        <h1>{{myPortfolio.nombre}} {{myPortfolio.apellido}}</h1>
+      </div>
+      <div id="info-data">
+   
+        <input class="set-width" style="font-weight: bold" [(ngModel)]="editPosition"  *ngIf="editmode" type="text" placeholder="{{myPortfolio.position}}">
+        <div *ngIf="!editmode" style="font-weight: bold">{{myPortfolio.position}}</div>
+        
+        <input class="set-width" [(ngModel)]="editUbication"  *ngIf="editmode" type="text" placeholder="{{myPortfolio.ubication}}">
+        
+        <span *ngIf="!editmode">{{myPortfolio.ubication}}</span>
+
+
+
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#bootstrapModel"
+        (click)="openModal2()">Informacion de contacto</button>
+
+        <input class="set-width" [(ngModel)]="editTelefono"  *ngIf="editmode" type="text" placeholder="{{myPortfolio.telefono}}">
+        <input class="set-width" [(ngModel)]="editCorreo"  *ngIf="editmode" type="text" placeholder="{{myPortfolio.correo}}">
+
+      </div>
+      <button *ngIf="editmode" (click)="save()" class="btn btn-primary" >save</button>
+      <button *ngIf="editmode" (click)="cancel()" class="btn btn-light">cancel</button>
+
+</div>
+    
+  </div>
+
+  <div class="card-actions" *ngIf="!editmode">
+    
+ 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bootstrapModel"
+(click)="openModal()">Tengo interés en</button>
+
+
+
+<app-interes-button></app-interes-button>
+
+
+
+</div>
+
+
+ 
+<div class="backdrop" [ngStyle]="{'display':'display'}"  >
+<div class="modal" id tabindex="-1" role="dialog"  [ngStyle]="{'display':display2}"  style="width: 30%;height:19%;margin-top: 300px;margin-left: 400px;" id="#bootstrapModel"
+aria-labelledby="exampleModalLabel"
+>
+   <div class="modal-content" > 
+     <div class="modal-header">
+       <button type="button" class="close"  aria-label="Close" (click)="onCloseHandled2()" ></button>
+       <h4 class="modal-title">Contacto</h4>
+     </div>
+     <div  >       
+            <p>Telefono:{{myPortfolio.telefono}}</p>
+            <p>Direccion: {{myPortfolio.correo}}</p>
+    </div>  
+     <button type="button" class="btn btn-default" (click)="onCloseHandled2()" >Close</button>
+   </div>
+</div>
+</div>
+
+
+<!--  -->
+
+<div class="modal" id tabindex="-1" role="dialog"  [ngStyle]="{'display':display}"  id="#bootstrapModel"
+aria-labelledby="exampleModalLabel"> 
+
+
+
+   <div class="modal-content"> 
+     <div class="modal-header">
+       <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"></button>
+       <h4 class="modal-title">Intereses</h4>
+     </div>
+     <div  >
+      
+      <carousel [isAnimated]="true" >
+        <slide *ngFor="let slide of slides; let index=index">
+          <img [src]="slide.image" alt="image slide" >
+          
+          
+        
+
+          <div class="carousel-caption">
+            <h4>{{index+1}}</h4>
+            <p>{{slide.text}}</p>
+           
+          </div>
+
+          
+        </slide>
+      </carousel>
+
+
+    </div>
+   </div> 
+   
+    <div>
+      <button type="button" class="btn btn-info"
+              (click)="addSlide()">Add Slide
+      </button>
+      <button type="button" class="btn btn-info"
+              (click)="removeSlide()">Remove Current
+      </button>
+      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+
+      <input class="set-width" [(ngModel)]="editSlideImg"  *ngIf="editslide" type="text" placeholder="Direccion de Imagen">
+      <input class="set-width" [(ngModel)]="editSlideText"  *ngIf="editslide" type="text" placeholder="Descripcion">
+    </div> 
+  
+   </div>
+    </div> 
+
+</div>
+

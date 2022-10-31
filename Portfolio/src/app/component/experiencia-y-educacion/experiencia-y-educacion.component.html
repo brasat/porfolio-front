@@ -2,59 +2,174 @@
     <div class="card mat-card"id="second card">
         <div id="info"style="padding:16px">
             <div class="card-actions">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+                (click)="edit_experience()"
+                >
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"
+                style="margin-right: 10px;"
+                (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseBasic"
+                
+                (click)="scrollToElement(exp)"
+                >
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+
             </div>
             <div class="card-title">
                 <h1>Expericencia</h1>
             </div>
-            <li *ngFor="let experience of experienceList">
-                <img [src]="experience.img" alt="" class="logo-imagen">
 
-                <div id="info-data">
-                    <div>
-                        <div class="card-subtitle">
-                            <h2>{{experience.position}}</h2>
-                        </div>
-                        <p style="font-weight: bolder">{{experience.company}} - {{experience.mode}}</p>
-                        <div class="card-text">
-                            <p class="text-muted">{{experience.start}} - {{experience.end}} - {{experience.time}} <br> {{experience.ubicacion}}</p>
-                        </div>
-                    </div>
+            <div id="collapseBasic" [collapse]="isCollapsed" #exp>
+                <div class="well well-lg card card-block card-header">
+                
+                <div style="padding:16px">
+                    
+                    <h2 for="exampleFormControlInput1" class="form-label">Añadir experiencia</h2>
+
+                    <input class="form-control" [(ngModel)]="imagenExp" id="exampleFormControlTextarea1" rows="3" placeholder="Link de imagen">
+                    <input class="form-control" [(ngModel)]="editExperiencia" id="exampleFormControlTextarea1" rows="3" placeholder="Experiencia">
+                    <input class="form-control" [(ngModel)]="editCompania" id="exampleFormControlTextarea1" rows="3" placeholder="Nombre Compania">
+                    <input class="form-control" [(ngModel)]="editJornadaexp" id="exampleFormControlTextarea1" rows="3" placeholder=" Jornada">
+
+
+                    <button type="button" class="btn btn-light" (click)="save_e()">Save</button>
                 </div>
+                </div>
+            </div>
+
+            <li *ngFor="let experience of myMapExp.keys()" >
+ 
+
+                <img [src]="experience" alt="" class="logo-imagen">
+
+                
+                <div class="card-text" >
+                    <svg xmlns="http://www.w3.org/2000/svg" *ngIf="editmode" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+                    (click)="editValue(experience)"
+                    >
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" *ngIf="editmode" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"
+                    (click)="deleteExp(experience)"
+                    >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                    
+                </div>
+
+
+                <input  class="set-width" [(ngModel)]="editvalue0"  *ngIf="editval" type="text" placeholder="{{editvalue0}}"><br *ngIf="editval">
+                <input  class="set-width" [(ngModel)]="editvalue1"  *ngIf="editval" type="text" placeholder="Experiencia"><br *ngIf="editval">
+                <input  class="set-width" [(ngModel)]="editvalue2"  *ngIf="editval" type="text" placeholder="Nombre Compania"><br *ngIf="editval">
+                <input  class="set-width" [(ngModel)]="editvalue3"  *ngIf="editval" type="text" placeholder="Jornada"><br *ngIf="editval">
+
+                <div *ngFor="let experienceV of myMapExp.get(experience)"> 
+                    <h2>{{experienceV}}</h2>
+                </div>
+
             </li>
+            <button *ngIf="editmode" (click)="save_experience()" class="btn btn-primary" >save</button>
+            <button *ngIf="editmode" (click)="cancel_experience()" class="btn btn-light">cancel</button>
          </div>
     </div>
 <div>
     
 
-    <div class="card mat-card"id="third card">
-        <div id="info"style="padding:16px">
-                <div class="card-actions">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+
+<div class="card mat-card"id="third card">
+    <div id="info"style="padding:16px">
+            <div class="card-actions">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+                (click)="edit_education()"
+                >
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"
+                style="margin-right: 10px;"
+                (click)="isCollapsed2 = !isCollapsed2"
+                [attr.aria-expanded]="!isCollapsed2"
+                aria-controls="collapseBasic"
+                
+                (click)="scrollToElement(edu)"
+                >
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+        </div>
+        <div class="card-title">
+            <h1>Educacion</h1>
+        </div>
+        <div id="collapseBasic" [collapse]="isCollapsed2" #edu>
+            <div class="well well-lg card card-block card-header">
+            
+            <div style="padding:16px">
+                
+                <h2 for="exampleFormControlInput1" class="form-label">Añadir educacion</h2>
+ 
+
+                <input class="form-control" [(ngModel)]="imagenEdu" id="exampleFormControlTextarea1" rows="3" placeholder="Link de imagen">
+                <input class="form-control" [(ngModel)]="editInstitucion" id="exampleFormControlTextarea1" rows="3" placeholder="Nombre  de Institucion">
+                <input class="form-control" [(ngModel)]="editCarrera" id="exampleFormControlTextarea1" rows="3" placeholder="Nombre del Cargo">
+                <input class="form-control" [(ngModel)]="editJornada" id="exampleFormControlTextarea1" rows="3" placeholder="Periodo">
+                                
+                <button type="button" class="btn btn-light" (click)="save_edu()">Save</button>
+            </div>
+            </div>
+        </div>
+            <li *ngFor="let educacion of myMapEdu.keys()">    
+           
+                
+                <img [src]="educacion" alt="" class="logo-imagen">
+     
+
+                <div class="card-text" >
+                    <svg xmlns="http://www.w3.org/2000/svg" *ngIf="editmode2" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+                    (click)="editValueEd(educacion)"
+                    >
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                     </svg>
-            </div>
-            <div class="card-title">
-                <h1>Educacion</h1>
-            </div>
 
-                <li *ngFor="let educacion of educacionList">
-                    <img [src]="educacion.img" alt="" class="logo-imagen">
-                    <div id="info-data">
-                        <div>
-                            <div class="card-subtitle">
-                                <h2>{{educacion.school}}</h2>
-                            </div>
-                                <div style="font-weight: bolder">{{educacion.career}}</div>
-                                <p class="text-muted"> <time>{{educacion.start}}</time>  - <time>{{educacion.end}}</time></p> 
-                         </div>
-                    </div>
-                </li>
+                    <svg xmlns="http://www.w3.org/2000/svg" *ngIf="editmode2" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"
+                    (click)="deleteEd(educacion)"
+                    >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                      
+                 
+                </div>
 
-             </div>
-         </div>
-    
+                
+                
+                
+                
+                <div *ngFor="let eduV of myMapEdu.get(educacion)"> 
+                    
+                    <h2>{{eduV}} </h2>
+                    
+                </div>
+                
+            </li>
+            
+                            <input  class="set-width" [(ngModel)]="editvalue4"  *ngIf="editval2" type="text" placeholder="{{editvalue4}}"><br *ngIf="editval2">
+                            <input  class="set-width" [(ngModel)]="editvalue5"  *ngIf="editval2" type="text" placeholder="Nombre  de Institucion"><br *ngIf="editval2">
+                            <input  class="set-width" [(ngModel)]="editvalue6"  *ngIf="editval2" type="text" placeholder="Nombre del Cargo"><br *ngIf="editval2">
+                            <input  class="set-width" [(ngModel)]="editvalue7"  *ngIf="editval2" type="text" placeholder="Periodo"><br *ngIf="editval2">
+
+            <button *ngIf="editmode2" (click)="save_education()" class="btn btn-primary" >save</button>
+            <button *ngIf="editmode2" (click)="cancel_education()" class="btn btn-light">cancel</button>
+            
+        </div>
+    </div>
+

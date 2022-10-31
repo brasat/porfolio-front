@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import {Router} from '@angular/router';
+import {PortfolioService} from 'src/app/service/portfolio.service'
+import { Persona } from 'src/app/persona';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -10,16 +14,12 @@ import {Router} from '@angular/router';
 })
 export class IniciarSesionComponent implements OnInit {
   form:FormGroup;
-  constructor(private formBuilder: FormBuilder, private autenticacionService:AutenticacionService,private ruta:Router) { 
+
+  constructor(private datosPortfolio:PortfolioService,private formBuilder: FormBuilder, private autenticacionService:AutenticacionService,private ruta:Router,private http: HttpClient) { 
     this.form=this.formBuilder.group(
       {
-      email:['',[Validators.required,Validators.email]],
+      usernameOrEmail:['',[Validators.required,Validators.email]],
       password:['',[Validators.required,Validators.minLength(8)]],
-      deviceInfo:this.formBuilder.group({
-        deviceId: ["178678668768"],
-        deviceType:["DEVICE_TYPE_ANDROID"],
-        notificationToken:["67676564eececc34"]
-        })
       }
     )
   }
@@ -28,7 +28,7 @@ export class IniciarSesionComponent implements OnInit {
   }
 
   get Email(){
-    return this.form.get('email');
+    return this.form.get('usernameOrEmail');
   }
 
   get Password(){
@@ -36,10 +36,18 @@ export class IniciarSesionComponent implements OnInit {
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
+    this.onPreserbar();
+
     this.autenticacionService.IniciarSesion(this.form.value).subscribe(data=>{
-      console.log("DATA:" + JSON.stringify(data));
-      this.ruta.navigate(['/tareas']);
+      this.ruta.navigate(['/portfolio']);
     })
+  }
+
+  onPreserbar(){
+    this.datosPortfolio.RecibirNombre(this.form.get('usernameOrEmail')?.value);
+  }
+  
+  regist(){
+    this.ruta.navigate(['/registrar']);
   }
 }
