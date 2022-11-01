@@ -15,10 +15,9 @@ import { RegistService } from 'src/app/service/regist.service';
 export class AcercaDeComponent implements OnInit {
   about:any;
 
-  persona:Persona[];
+
   
-  @Input() 
-  text: any ;
+
 
   editmode = false;
   editText = '';
@@ -53,14 +52,13 @@ export class AcercaDeComponent implements OnInit {
       this.user = data;
       this.user.about=this.about;
 
+      this.datosPortfolio.agregarUsuario(this.user).subscribe(data2 => {
+
+      });
       
     });
 
-    this.user.about= this.editText;
-
-    this.datosPortfolio.agregarUsuario(this.user).subscribe(data2 => {
-
-    });
+    
 
 
 

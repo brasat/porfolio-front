@@ -26,7 +26,7 @@
                 <h1>Logros</h1>
             </div>
     
-             <h2>{{this.logContent.length}} Proyectos</h2>  
+             <h2>{{this.logContent.length? this.logContent.length:0}} Proyectos</h2>  
 
 
             <div id="collapseBasic" [collapse]="isCollapsed" #target>
@@ -66,7 +66,9 @@
                 
                 <button *ngIf="editval" (click)="save()" class="btn btn-primary" >save</button>
                 <button *ngIf="editval" (click)="cancel()" class="btn btn-light">cancel</button>
-          
+
+                <button *ngIf="editmode" (click)="save()" class="btn btn-primary" >save</button>
+                <button *ngIf="editmode" (click)="cancel()" class="btn btn-light">cancel</button>
 
             </div>     
         </div>

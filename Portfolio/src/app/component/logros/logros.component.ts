@@ -17,15 +17,17 @@ export class LogrosComponent implements OnInit {
   editText:String = '';
   editvalue:String = '';
 
+ 
 
   log:any;
   notes:any[]=[];
-  logContent:any[];
+  logContent:String[];
   editAux:String= '';
 
   auxPerson:any;
 
   editval=false;
+
 
   constructor(private portfolioService: PortfolioService) { }
 
@@ -36,7 +38,6 @@ export class LogrosComponent implements OnInit {
       this.logContent = header_value.aptitudes;
       
     });
-
 
   }
 
@@ -109,6 +110,20 @@ export class LogrosComponent implements OnInit {
     const index = this.logContent.indexOf(logro);
     const x = this.logContent.splice(index, 1);
 
+    this.portfolioService.ObtenerPersonas().subscribe(header_value => {
+      this.auxPerson = header_value;
+      
+      this.auxPerson.aptitudes = this.logContent;
+
+      this.portfolioService.agregarUsuario(this.auxPerson).subscribe(data2 => {
+  
+      });
+
+    });
+
+    
+
+    
   }
 
 
